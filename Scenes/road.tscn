@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cei4eb01j1gfp"]
+
+[ext_resource type="Texture2D" uid="uid://c5ug7gn8k32s1" path="res://Assets/Sprites/long.png" id="1_s5bdx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b51y2"]
+size = Vector2(164, 13)
+
+[node name="Road" type="RigidBody2D"]
+
+[node name="IMG" type="Sprite2D" parent="."]
+scale = Vector2(0.580442, 0.526316)
+texture = ExtResource("1_s5bdx")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_b51y2")

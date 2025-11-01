@@ -60,11 +60,12 @@
 
 extends CharacterBody2D
 
-const Walk_Speed = 300.0
-const JUMP_VELOCITY = -400.0
-@export var Run_Speed = 500
+const Walk_Speed = 150.0
+const JUMP_VELOCITY = -350.0
+@export var Run_Speed = 300
 @export_range(0,1) var acc = 0.1
 @export_range(0,1) var dec = 0.1
+const PUSH_FORCE = 100.0
 
 @onready var player_animation: AnimatedSprite2D = $PlayerAnimation
 
@@ -76,7 +77,14 @@ func _physics_process(delta: float) -> void:
 	# Jump + Wall Jump
 	if Input.is_action_just_pressed("JUMP") and (is_on_floor() or is_on_wall()):
 		velocity.y = JUMP_VELOCITY
+		
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var body = collision.get_collider()
 
+		if body is RigidBody2D:
+			# Apply impulse in the direction you are pushing
+			body.apply_central_impulse(-collision.get_normal() * PUSH_FORCE)
 	# Run / Walk Speed
 	var speed
 	if Input.is_action_pressed("RUN") and not is_on_wall():

@@ -80,9 +80,9 @@ script = ExtResource("1_1f0kj")
 
 [node name="Enemy Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_56vhr")
-animation = &"Idle"
+animation = &"Hit"
 autoplay = "Idle"
-frame_progress = 0.545079
+frame_progress = 0.409794
 
 [node name="DeadZone" type="Area2D" parent="."]
 
@@ -92,8 +92,10 @@ shape = SubResource("RectangleShape2D_ta2yt")
 
 [node name="LEFT" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
-target_position = Vector2(-24, 0)
+target_position = Vector2(-16, 0)
+collision_mask = 2
 
 [node name="RIGHT" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
-target_position = Vector2(24, 0)
+target_position = Vector2(16, 0)
+collision_mask = 2
