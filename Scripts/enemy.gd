@@ -18,3 +18,8 @@ func _process(delta: float) -> void:
 		
 		
 	position.x += direction * EnemySpeed * delta
+
+
+func _on_dead_zone_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		body.take_damage(1)

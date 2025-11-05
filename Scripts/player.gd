@@ -1,14 +1,35 @@
 extends CharacterBody2D
 
 const Walk_Speed = 150.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -310.0
 @export var Run_Speed = 300
 @export_range(0,1) var acc = 0.1
 @export_range(0,1) var dec = 0.1
 const PUSH_FORCE = 120.0
 
+@export var max_health := 3
+var current_health := max_health
+
 @onready var player_animation: AnimatedSprite2D = $PlayerAnimation
 
+
+func _ready() -> void:
+	current_health = max_health
+
+
+func take_damage(amount: int):
+	current_health -= amount
+	print(current_health)
+	player_animation.play("Hit")
+	if current_health <= 0:
+		die()
+		
+func die():
+	print("Player Died!")
+	player_animation.play("Death")
+	#await player_animation.animation_finished
+	get_tree().reload_current_scene()
+	
 func _physics_process(delta: float) -> void:
 	# Apply gravity
 	if not is_on_floor():

@@ -99,3 +99,5 @@ collision_mask = 2
 position = Vector2(0, 8)
 target_position = Vector2(16, 0)
 collision_mask = 2
+
+[connection signal="body_entered" from="DeadZone" to="." method="_on_dead_zone_body_entered"]
